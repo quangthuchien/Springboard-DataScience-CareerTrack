@@ -1,0 +1,20 @@
+Capstone Project Proposal
+By Hien Quang
+
+I. Problem
+There are many variables that contribute and define a board game. This makes it difficult to determine which variables are best at predicting how successful a game can be. A successful games is highly rated either by gamers or the boardgamegeek's admin.
+
+II. Client Analysis
+Any board game designers can be benefited from having information about what gamers prefer. As someone who wanted to build a board game of my own, having insight regarding which variables influence the success of a board game would help me make informed decisions about game mechanic, theme, number of players, etc.
+
+III. Dataset
+Initially, this project will use dataset obtained from Kaggle (https://www.kaggle.com/mrpantherson/board-game-data) which contains 5000 entries of different board games collected March 2017. However, for a full analysis, I would collected data directly from boardgamegeek website using their public API (https://boardgamegeek.com/wiki/page/BGG_XML_API2). The reason for this is that the Kaggle dataset doesn't include description of each games which would be useful in testing if gamers prefer a particular genre/theme. 
+
+IV. Approach
+As with any dataset, the first step is to clean using data wrangling method. After that, I would plot several variables against game's rating to find any strong correlations. Depends on what is found, the next step is to check of there is any group of variables that can produce better correlation.
+
+V. Deliverables
+My deliverables for this project include:
+    1. Slidedecks showing mostly charts and plots resulted from the analysis
+    2. Paper discussing in depth the results and its implications.
+    3. Code in Python3 notebook showing my thinking process
