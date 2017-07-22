@@ -14,8 +14,8 @@ gameurl='https://boardgamegeek.com/boardgame/'
 bgg = BGGClient()
 
 #based on the platform download phantomjs and give the path to the the executable
-browser = webdriver.PhantomJS(executable_path=r'/Users/quangthuchien/datascienceclass/Capstone\ project\ 1\ -\ Boardgames/Spider/phantomjs.exe')
-#browser = webdriver.PhantomJS() #phantomjs.exe has to be in the same directory with this script
+browser = webdriver.PhantomJS()
+
 
 class Game(Item):
     id = Field()
@@ -54,13 +54,8 @@ class GameSpider(CrawlSpider):
     #importing basic game information like id name
     def parse(self, response):
         soup = BeautifulSoup(response.body, 'lxml')
-
-        next_page = soup.select('a[title^="next"]')
-        if next_page:
-            next_page = next_page[0].get('href')
-        if next_page:
-            yield self.make_requests_from_url(response.urljoin(next_page))
         rows = soup.select('tr#row_')
+        i=0
         for row in rows:
             g = Game()
             a = row.find_all('a', href=re.compile('^/boardgame'))
@@ -72,6 +67,10 @@ class GameSpider(CrawlSpider):
             g['geek_rate'] = geek_rate.text.strip()
             g['avg_rate'] = avg_rate.text.strip()
             g['num_votes'] = num_votes.text.strip()
+            print ("/n/n i count \t")
+            i=i+1
+            print (i)
+            print ('\n\n')
             thisgameurl=gameurl+g['id']
             print (thisgameurl)
 
@@ -156,3 +155,8 @@ class GameSpider(CrawlSpider):
 
             # you can add many other informations which are not used yet like
             yield g
+        next_page = soup.select('a[title^="next"]')
+        if next_page:
+            next_page = next_page[0].get('href')
+        if next_page:
+            yield self.make_requests_from_url(response.urljoin(next_page))
